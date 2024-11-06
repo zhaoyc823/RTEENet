@@ -73,8 +73,7 @@ def lowlight(image_path,image_high_name,expect_mean):
 	FLW_net = model.enhance_net_nopool(scale_factor,nbins).cuda()
 	FLW_net.load_state_dict(torch.load('snapshots_Flwnet/best_Epoch.pth'))
 	start = time.time()
-	enhanced_image,retouch_image,ill_image= FLW_net(data_lowlight,hist)
-	#enhanced_image = torch.clamp(enhanced_image, min=0.0, max=1.0)
+	enhanced_image,retouch_image,ill_image = RTEE_net(data_lowlight,hist)
 	end_time = (time.time() - start)
 	# print(end_time)
 
@@ -92,7 +91,7 @@ def lowlight(image_path,image_high_name,expect_mean):
 	Loss_ssim = ssim_loss(enhanced_image,data_highlight)
 
 	# image_path = image_path.replace('low/low','result/low')
-	image_path = image_path.replace('LOL_v1','result')
+	image_path = image_path.replace('data','result')
 
 	result_path = image_path
 	if not os.path.exists(image_path.replace('/'+image_path.split("/")[-1],'')):
@@ -100,7 +99,7 @@ def lowlight(image_path,image_high_name,expect_mean):
 		# print(image_path.replace('/'+image_path.split("/")[-1],''))
 	# print(result_path)
 	# import pdb;pdb.set_trace()
-	#torchvision.utils.save_image(torch.cat([enhanced_image,ill_image],axis=3), result_path)
+	# torchvision.utils.save_image(torch.concat([enhanced_image,ill_image],axis=3), result_path)
 	torchvision.utils.save_image(enhanced_image, result_path)
 	return end_time,Loss_psnr,Loss_ssim
 
