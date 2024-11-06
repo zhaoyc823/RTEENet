@@ -1,0 +1,4 @@
+LOL_v2_real/Train/low/
+LOL_v2_real/Train/high/
+LOL_v2_real/Test/low/
+LOL_v2_real/Test/high/
