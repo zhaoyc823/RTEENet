@@ -82,37 +82,20 @@ def train(config):
 
 			E = 0.5
 
-			enhanced_image,retouch_image,ill_image,base_image  = RTEE_net(img_lowlight,hist)
+			enhanced_image,retouch_image,ill_image = RTEE_net(img_lowlight,hist)
 			Loss_1 = L_grad_cosist(enhanced_image,img_highlight)
 			Loss_6 = L_bright_cosist(enhanced_image,img_highlight)
 			loss_2, Loss_ssim = L_recon(enhanced_image,img_highlight)
 			loss_3 = L_retouch_mean(retouch_image,img_highlight)
 			loss_col = torch.mean(L_color_zy(enhanced_image,img_highlight))
-			Loss_7 = L_grad_cosist(base_image,img_denoise)
-			loss_8, Loss_ssim8 = L_recon(base_image, img_denoise)
 
-			loss_5 = L_recon_low(enhanced_image,img_lowlight,ill_image)
-			# Loss_4 = L_smooth4(enhanced_image)+L_smooth4(enhanced_image[:,0:1,:,:])+L_smooth4(enhanced_image[:,2:3,:,:])+L_smooth4(enhanced_image[:,1:2,:,:]) + L_smooth4(retouch_image)
-			Loss_ill = L_smooth_ill(ill_image,enhanced_image)+L_smooth_ill(ill_image[:,0:1,:,:],enhanced_image[:,0:1,:,:])+L_smooth_ill(ill_image[:,2:3,:,:],enhanced_image[:,2:3,:,:])+L_smooth_ill(ill_image[:,1:2,:,:],enhanced_image[:,1:2,:,:]) 
-			Loss_TV = L_TV(retouch_image)
-			# loss_spa = torch.mean(L_spa(enhanced_image, img_highlight))
-			loss_exp = torch.mean(L_exp(enhanced_image,E))
-			loss_crl = L_crl(enhanced_image, img_highlight)
+			loss_supervised = Loss_ssim + loss_2+Loss_1 +Loss_6 + loss_col
+			loss = loss_supervised
 
-			loss_unsupervised = loss_exp  #+ Loss_TV  + loss_spa
-			#loss_supervised = Loss_ssim + loss_2 + Loss_1 + Loss_6 + loss_col + 0.3*loss_crl
-			loss_supervised = Loss_ssim + loss_2+Loss_1 +Loss_6 + loss_col#+ Loss_7 + Loss_ssim8#+ 0.25* Loss_ill +loss_5 +loss_3  +
-
-			loss = loss_supervised #+ loss_unsupervised
-			# best_loss
 			
 			optimizer.zero_grad()
 			loss.backward()
-			# torch.nn.utils.clip_grad_norm(RTEE_net.parameters(),config.grad_clip_norm)
 			optimizer.step()
-
-			# if ((iteration+1) % config.display_iter) == 0:
-			# 	print("Loss at iteration", iteration+1, ":", Loss_ssim.item())
 
 			if ((iteration+1) % config.display_iter) == 0:
 				if ((epoch+1)%config.snapshot_iter) ==0:
@@ -136,7 +119,6 @@ if __name__ == "__main__":
 	parser.add_argument('--highlight_images_path', type=str, default="LOL_v1/Train/high/")
 	parser.add_argument('--val_lowlight_images_path', type=str, default="LOL_v1/Test/low/")
 	parser.add_argument('--val_highlight_images_path', type=str, default="LOL_v1/Test/high/")
-	
 
 	parser.add_argument('--task', type=str, default="train")
 	parser.add_argument('--nbins', type=int, default=14)
