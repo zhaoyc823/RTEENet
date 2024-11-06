@@ -65,9 +65,9 @@ def train(config):
 	L_crl = Myloss.L_color_rate()
 
 
-	optimizer = torch.optim.Adam(FLW_net.parameters(), lr=config.lr, weight_decay=config.weight_decay)
+	optimizer = torch.optim.Adam(RTEE_net.parameters(), lr=config.lr, weight_decay=config.weight_decay)
 	
-	FLW_net.train()
+	RTEE_net.train()
 	loss = 0
 	ssim_high = 0
 	psnr_high = 0
@@ -82,7 +82,7 @@ def train(config):
 
 			E = 0.5
 
-			enhanced_image,retouch_image,ill_image,base_image  = FLW_net(img_lowlight,hist)
+			enhanced_image,retouch_image,ill_image,base_image  = RTEE_net(img_lowlight,hist)
 			Loss_1 = L_grad_cosist(enhanced_image,img_highlight)
 			Loss_6 = L_bright_cosist(enhanced_image,img_highlight)
 			loss_2, Loss_ssim = L_recon(enhanced_image,img_highlight)
@@ -108,7 +108,7 @@ def train(config):
 			
 			optimizer.zero_grad()
 			loss.backward()
-			# torch.nn.utils.clip_grad_norm(FLW_net.parameters(),config.grad_clip_norm)
+			# torch.nn.utils.clip_grad_norm(RTEE_net.parameters(),config.grad_clip_norm)
 			optimizer.step()
 
 			# if ((iteration+1) % config.display_iter) == 0:
@@ -117,13 +117,13 @@ def train(config):
 			if ((iteration+1) % config.display_iter) == 0:
 				if ((epoch+1)%config.snapshot_iter) ==0:
 					torchvision.utils.save_image(torch.concat([enhanced_image[0],ill_image[0]],axis=2), config.sample_dir+str(epoch) + '.png')
-					# torch.save(FLW_net.state_dict(), config.snapshots_folder + "Epoch" + str(epoch) + '.pth') 		
-					FLW_net.eval()
-					PSNR_mean, SSIM_mean = validation(FLW_net, val_loader)
+					# torch.save(RTEE_net.state_dict(), config.snapshots_folder + "Epoch" + str(epoch) + '.pth') 		
+					RTEE_net.eval()
+					PSNR_mean, SSIM_mean = validation(RTEE_net, val_loader)
 					if SSIM_mean > ssim_high:
 						ssim_high = SSIM_mean
 						print('the highest SSIM value is:', str(ssim_high))
-						torch.save(FLW_net.state_dict(), os.path.join(config.snapshots_folder, "best_Epoch" + '.pth'))
+						torch.save(RTEE_net.state_dict(), os.path.join(config.snapshots_folder, "best_Epoch" + '.pth'))
 					with open(config.snapshots_folder + 'log.txt', 'a+') as f:
 						f.write('epoch' + str(epoch) + ':' + 'the SSIM is' + str(SSIM_mean) + 'the PSNR is' + str(PSNR_mean) + '\n')
 
@@ -154,9 +154,9 @@ if __name__ == "__main__":
 	parser.add_argument('--display_iter', type=int, default=2)
 	parser.add_argument('--snapshot_iter', type=int, default=20)
 	parser.add_argument('--scale_factor', type=int, default=20)
-	parser.add_argument('--snapshots_folder', type=str, default="snapshots_Flwnet-v1/")
+	parser.add_argument('--snapshots_folder', type=str, default="snapshots_RTEEnet-v1/")
 	parser.add_argument('--load_pretrain', type=bool, default= False)
-	parser.add_argument('--pretrain_dir', type=str, default= "snapshots_Flwnet/best_Epoch.pth")
+	parser.add_argument('--pretrain_dir', type=str, default= "snapshots_RTEEnet/best_Epoch.pth")
 
 	config = parser.parse_args()
 
