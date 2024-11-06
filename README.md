@@ -72,14 +72,14 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
 
 
 
-### 3. Test
-You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/file/d/1GeEkasO2ubFi847pzrxfQ1fB3Y9NuhZ1/view?usp=sharing). GT Mean evaluation is enabled by default and can be deactivated by setting the boolean flag ```gt_mean=False``` in the ```compute_psnr()``` method under the ```test.py``` file.
+### 3. Train
+You can train the model using the following command:
 
 ```bash
-python test.py
+python Train.py
 ```
 
-**Note:** Please modify the dataset paths in ```test.py``` as per your requirements.
+**Note:** Please modify the dataset paths in ```Train.py``` as per your requirements.
 
 ### 4. Compute Complexity
 You can test the model complexity (FLOPS/Params) using the following command:
@@ -88,11 +88,11 @@ You can test the model complexity (FLOPS/Params) using the following command:
 python macs.py
 ```
 
-### 5. Train
-You can train the model using the following command:
+### 5. Test
+You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/file/d/1GeEkasO2ubFi847pzrxfQ1fB3Y9NuhZ1/view?usp=sharing). GT Mean evaluation is enabled by default and can be deactivated by setting the boolean flag ```gt_mean=False``` in the ```compute_psnr()``` method under the ```test.py``` file.
 
 ```bash
-python train.py
+python Test.py
 ```
 
-**Note:** Please modify the dataset paths in ```train.py``` as per your requirements.
+**Note:** Please modify the dataset paths in ```Test.py``` as per your requirements.
