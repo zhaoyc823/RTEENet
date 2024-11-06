@@ -132,11 +132,10 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="data/LOL_v1/Train/low/")
-	parser.add_argument('--highlight_images_path', type=str, default="data/LOL_v1/Train/high/")
-	#parser.add_argument('--denoise_images_path', type=str, default="data/Train/denoise/")
-	parser.add_argument('--val_lowlight_images_path', type=str, default="data/LOL_v1/Test/low/")
-	parser.add_argument('--val_highlight_images_path', type=str, default="data/LOL_v1/Test/high/")
+	parser.add_argument('--lowlight_images_path', type=str, default="LOL_v1/Train/low/")
+	parser.add_argument('--highlight_images_path', type=str, default="LOL_v1/Train/high/")
+	parser.add_argument('--val_lowlight_images_path', type=str, default="LOL_v1/Test/low/")
+	parser.add_argument('--val_highlight_images_path', type=str, default="LOL_v1/Test/high/")
 	
 
 	parser.add_argument('--task', type=str, default="train")
