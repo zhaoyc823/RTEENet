@@ -82,10 +82,9 @@ python Train.py
 **Note:** Please modify the dataset paths in ```Train.py``` as per your requirements.
 
 ### 4. Compute Complexity
-You can test the model complexity (FLOPS/Params) using the following command:
+You can test the model complexity (Params) using the following command:
 ```bash
-# To run FLOPS check with default (1,256,256,3)
-python macs.py
+python model.py
 ```
 
 ### 5. Test
