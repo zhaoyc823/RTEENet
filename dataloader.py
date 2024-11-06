@@ -117,12 +117,11 @@ class MemoryFriendlyLoader_zy3(torch.utils.data.Dataset):
 
 
 class MemoryFriendlyLoader_zy4(torch.utils.data.Dataset):
-    def __init__(self, low_img_dir, high_img_dir, denoise_img_dir ,task, batch_w, batch_h,nbins = 14,exp_mean=0.55):
+    def __init__(self, low_img_dir, high_img_dir, task, batch_w, batch_h,nbins = 14,exp_mean=0.55):
         self.exp_mean = exp_mean
         self.task = task
         self.train_low_data_names = []
         self.train_high_data_names = []
-        self.train_denoise_data_names = []
         self.nbins = nbins
 
         self.batch_w = batch_w
@@ -130,20 +129,16 @@ class MemoryFriendlyLoader_zy4(torch.utils.data.Dataset):
 
         self.train_low_data_names = glob.glob(low_img_dir + "*.*")
         self.train_high_data_names = glob.glob(high_img_dir + "*.*")
-        self.train_denoise_data_names = glob.glob(denoise_img_dir + "*.*")
 
         self.count = len(self.train_low_data_names)
         self.low_data = []
         self.high_data = []
-        self.denoise_data = []
         self.hist_data = []
         for i in np.arange(self.count):
             low = self.load_images_transform(self.train_low_data_names[i])
             high = self.load_images_transform(self.train_high_data_names[i])
-            denoise = self.load_images_transform(self.train_denoise_data_names[i])
             self.low_data.append(low)
             self.high_data.append(high)
-            self.denoise_data.append(denoise)
 
             low_im_filter_mean = low.mean()
             low_im_filter_max = np.max(low,axis=2,keepdims=True)  # positive
@@ -170,7 +165,6 @@ class MemoryFriendlyLoader_zy4(torch.utils.data.Dataset):
 
         low = self.low_data[index]
         high = self.high_data[index]
-        denoise = self.denoise_data[index]
         hist = self.hist_data[index]
 
         h = low.shape[0]
@@ -182,13 +176,12 @@ class MemoryFriendlyLoader_zy4(torch.utils.data.Dataset):
         if self.task != 'test':
             low = low[h_offset:h_offset + self.batch_h, w_offset:w_offset + self.batch_w]
             high = high[h_offset:h_offset + self.batch_h, w_offset:w_offset + self.batch_w]
-            denoise = denoise[h_offset:h_offset + self.batch_h, w_offset:w_offset + self.batch_w]
         else:
             hist[ :, :, -1] = self.exp_mean
 
         img_name = self.train_low_data_names[index].split('\\')[-1]
 
-        return torch.from_numpy(low).float().permute(2,0,1), torch.from_numpy(high).float().permute(2,0,1),torch.from_numpy(denoise).float().permute(2,0,1),torch.from_numpy(hist).float().permute(2,0,1), img_name
+        return torch.from_numpy(low).float().permute(2,0,1), torch.from_numpy(high).float().permute(2,0,1),torch.from_numpy(hist).float().permute(2,0,1), img_name
 
     def __len__(self):
         return self.count
