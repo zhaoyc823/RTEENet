@@ -99,4 +99,4 @@ python Test.py
 ### 6. Evaluation
 You can find all the evaluation metrics used in the article in the folder ```evaluation```.
 
-**Note:** Please modify the dataset path according to your requirements.
+**Note:** Please modify the dataset paths according to your requirements.
