@@ -1,7 +1,5 @@
 
 # RTEE-Net: Real-time Efficient Image Enhancement in Low-light Condition with Novel Supervised Deep Learning Pipeline
-## Description
-This is the PyTorch version of RTEE-Net.
 
 ## Experiment
 
