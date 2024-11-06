@@ -27,7 +27,6 @@ LOLv1 - [Google Drive](https://drive.google.com/file/d/1vhJg75hIpYvsmryyaxdygAWe
 
 LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629PgvKqF2Tw/view?usp=sharing)
 
-**Note:** Under the main directory, create a folder called ```data``` and place the dataset folders inside it.
 <details>
   <summary>
   <b>Datasets should be organized as follows:</b>
@@ -69,9 +68,6 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
     |    |    |  ...
   ```
 
-</details>
-
-**Note:** ```data``` directory should be placed under the ```PyTorch``` implementation folder.
 
 ### 3. Test
 You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/file/d/1GeEkasO2ubFi847pzrxfQ1fB3Y9NuhZ1/view?usp=sharing). GT Mean evaluation is enabled by default and can be deactivated by setting the boolean flag ```gt_mean=False``` in the ```compute_psnr()``` method under the ```test.py``` file.
