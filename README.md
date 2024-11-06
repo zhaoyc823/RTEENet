@@ -97,4 +97,6 @@ python Test.py
 **Note:** Please modify the dataset paths in ```Test.py``` as per your requirements.
 
 ### 6. Evaluation
-You can find all the ```evaluation``` metrics used in the article in the evaluation folder.
+You can find all the evaluation metrics used in the article in the folder ```evaluation```.
+
+**Note:** Please modify the dataset path according to your requirements.
