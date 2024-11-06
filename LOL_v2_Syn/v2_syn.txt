@@ -1,0 +1,4 @@
+LOL_v2_Syn/Train/low/
+LOL_v2_Syn/Train/high/
+LOL_v2_Syn/Test/low/
+LOL_v2_Syn/Test/high/
