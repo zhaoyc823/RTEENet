@@ -32,11 +32,10 @@ def train(config):
 
 	os.environ['CUDA_VISIBLE_DEVICES']='0'
 	scale_factor = config.scale_factor
-	FLW_net = model.enhance_net_nopool(scale_factor,config.nbins).cuda()
+	RTEE_net = model.enhance_net_nopool(scale_factor,config.nbins).cuda()
 
-	# FLW_net.apply(weights_init)
 	if config.load_pretrain == True:
-	    FLW_net.load_state_dict(torch.load(config.pretrain_dir))
+	    RTEE_net.load_state_dict(torch.load(config.pretrain_dir))
 	train_dataset = dataloader.MemoryFriendlyLoader_zy4(low_img_dir = config.lowlight_images_path,\
 				high_img_dir = config.highlight_images_path,task=config.task,batch_w=config.patch_size,batch_h=config.patch_size,\
 				nbins = config.nbins,exp_mean=config.exp_mean)		
