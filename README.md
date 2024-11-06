@@ -88,10 +88,13 @@ python model.py
 ```
 
 ### 5. Test
-You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/file/d/1GeEkasO2ubFi847pzrxfQ1fB3Y9NuhZ1/view?usp=sharing). GT Mean evaluation is enabled by default and can be deactivated by setting the boolean flag ```gt_mean=False``` in the ```compute_psnr()``` method under the ```test.py``` file.
+You can test the model using the following command:
 
 ```bash
 python Test.py
 ```
 
 **Note:** Please modify the dataset paths in ```Test.py``` as per your requirements.
+
+### 6. Evaluation
+You can find all the ```evaluation``` metrics used in the article in the evaluation folder.
