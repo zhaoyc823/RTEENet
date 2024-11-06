@@ -50,6 +50,7 @@ def train(config):
 	val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=config.num_workers, pin_memory=True)
 
 
+
 	L_color_zy = Myloss.L_color_zy()
 	L_spa = Myloss.L_spa()
 	L_exp = Myloss.L_exp(16)
