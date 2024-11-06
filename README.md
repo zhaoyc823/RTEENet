@@ -68,6 +68,8 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
     |    |    |  ...
 ```
 
+
+
 ### 3. Test
 You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/file/d/1GeEkasO2ubFi847pzrxfQ1fB3Y9NuhZ1/view?usp=sharing). GT Mean evaluation is enabled by default and can be deactivated by setting the boolean flag ```gt_mean=False``` in the ```compute_psnr()``` method under the ```test.py``` file.
 
@@ -92,14 +94,3 @@ python train.py
 ```
 
 **Note:** Please modify the dataset paths in ```train.py``` as per your requirements.
-
-## Citation
-Preprint Citation
-```
-@article{brateanu2024,
-  title={LYT-Net: Lightweight YUV Transformer-based Network for Low-Light Image Enhancement},
-  author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian},
-  journal={arXiv preprint arXiv:2401.15204},
-  year={2024}
-}
-```
