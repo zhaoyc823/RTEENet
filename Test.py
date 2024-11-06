@@ -70,8 +70,8 @@ def lowlight(image_path,image_high_name,expect_mean):
 	data_lowlight = data_lowlight.cuda().unsqueeze(0)
 	hist = torch.from_numpy(hist).float().permute(2,0,1).cuda().unsqueeze(0)
 
-	FLW_net = model.enhance_net_nopool(scale_factor,nbins).cuda()
-	FLW_net.load_state_dict(torch.load('snapshots_Flwnet/best_Epoch.pth'))
+	RTEE_net = model.enhance_net_nopool(scale_factor,nbins).cuda()
+	RTEE_net.load_state_dict(torch.load('snapshots_RTEEnet/best_Epoch.pth'))
 	start = time.time()
 	enhanced_image,retouch_image,ill_image = RTEE_net(data_lowlight,hist)
 	end_time = (time.time() - start)
