@@ -38,7 +38,7 @@ def train(config):
 	if config.load_pretrain == True:
 	    FLW_net.load_state_dict(torch.load(config.pretrain_dir))
 	train_dataset = dataloader.MemoryFriendlyLoader_zy4(low_img_dir = config.lowlight_images_path,\
-				high_img_dir = config.highlight_images_path,denoise_img_dir= config.denoise_images_path,task=config.task,batch_w=config.patch_size,batch_h=config.patch_size,\
+				high_img_dir = config.highlight_images_path,task=config.task,batch_w=config.patch_size,batch_h=config.patch_size,\
 				nbins = config.nbins,exp_mean=config.exp_mean)		
 	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=config.train_batch_size, shuffle=True, num_workers=config.num_workers, pin_memory=True)
 
