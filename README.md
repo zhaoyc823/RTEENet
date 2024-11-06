@@ -8,8 +8,8 @@ This is the PyTorch version of RTEE-Net.
 ### 1. Create Environment
 - Make Conda Environment
 ```bash
-conda create -n RTEE_Torch python=3.9 -y
-conda activate LYT_Torch
+conda create -n RTEE-Net python=3.9 -y
+conda activate RTEE-Net
 ```
 - Install Dependencies
 ```bash
@@ -34,41 +34,39 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
   </summary>
 
   ```
-    |--data   
-    |    |--LOLv1
-    |    |    |--Train
-    |    |    |    |--input
-    |    |    |    |     ...
-    |    |    |    |--target
-    |    |    |    |     ...
-    |    |    |--Test
-    |    |    |    |--input
-    |    |    |    |     ...
-    |    |    |    |--target
-    |    |    |    |     ...
-    |    |--LOLv2
-    |    |    |--Real_captured
-    |    |    |    |--Train
-    |    |    |    |    |--Low
-    |    |    |    |    |     ...
-    |    |    |    |    |--Normal
-    |    |    |    |    |     ...
-    |    |    |    |--Test
-    |    |    |    |    |--Low
-    |    |    |    |    |     ...
-    |    |    |    |    |--Normal
-    |    |    |    |    |     ...
-    |    |    |--Synthetic
-    |    |    |    |--Train
-    |    |    |    |    |--Low
-    |    |    |    |    |    ...
-    |    |    |    |    |--Normal
-    |    |    |    |    |    ...
-    |    |    |    |--Test
-    |    |    |    |    |--Low
-    |    |    |    |    |    ...
-    |    |    |    |    |--Normal
-    |    |    |    |    |    ...
+    |--LOL_v1   
+    |    |--Train
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
+    |    |--Test
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
+    |--LOL_v2_real
+    |    |--Train
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
+    |    |--Test
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
+    |--LOL_v2_Syn
+    |    |--Train
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
+    |    |--Test
+    |    |    |--low
+    |    |    |  ...
+    |    |    |--high
+    |    |    |  ...
   ```
 
 </details>
