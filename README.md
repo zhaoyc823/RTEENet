@@ -8,7 +8,7 @@ This is the PyTorch version of RTEE-Net.
 ### 1. Create Environment
 - Make Conda Environment
 ```bash
-conda create -n LYT_Torch python=3.9 -y
+conda create -n RTEE_Torch python=3.9 -y
 conda activate LYT_Torch
 ```
 - Install Dependencies
